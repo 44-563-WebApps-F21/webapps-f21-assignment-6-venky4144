@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html>
- 
+ <title> Phrases to care</title>
 <body>
-    <h1>Venkatesh Guttikonda </h1>
 
-<h2>Getting input</h2>
+<h2>Pass phrase by Venkatesh Guttikonda” </h2>
 
 <form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
+    <label for="form1_phrase">Enter the secret phrase </label>
+    <input type ="Password" id="form1_phrase" name="form1_phrase" min=10 max=50 step=2 value= "1995"> <br>
 
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
+    <label for="form1_check">Enter a phrase </label>
+    <input type ="text" id="form1_check" name="form1_check" autofocus> <br>
 
-    <input type="button" onclick="resolveForm()" value="Get values from form">
+    <input type="button" onclick="processPhrase()" value="Check the phrase">
 </form>
 
 
-<p id="result">This text will be replaced </p>
+<p id="result">Result: </p>
 
 <script> 
 
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
+function processPhrase(){
+    var correct=0;
+    var wrong =0; 
     
+    phrase = document.getElementById("form1_phrase").value
+    check = document.getElementById("form1_check").value
+    alert("Is the given value"+check)
     out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
+
+    if(phrase==check){
+        correct = correct+1;
+       out.innerHTML = "correct:" +correct ;
+       alert('Access allowed')
     } else {
-        out.innerHTML = "Values were not confirmed"
+        wrong = wrong +1;
+        out.innerHTML = "wrong:" +wrong ;
+        alert('Access denied')
     }
 }
 </script>
