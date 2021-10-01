@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <title>javascript assignment</title>
+    <body>
+    <h1>Pass phrase by Venkatesh Guttikonda </h1>
+    <form>
+    <label for="secret">Enter the secret phrase</label>
+    <input type ="password" id="secret" name="form1_age" min=10 max=50 step=2 value="Let me in"> <br>
+
+    <label for="phrase">Enter a phrase </label>
+    <input type ="text" id="phrase" name="form1_nick" autofocus> <br>
+
+    <input type="button" onclick="processPhrase()" value="Check the phrase">
+</form>
+
+
+<p id="result">This text will be replaced </p>
+
+<script> 
+correct = 0
+wrong = 0
+function processPhrase(){
+    console.log("Getting form values")
+    correct = document.getElementById("secret").value
+    wrong = document.getElementById("phrase").value
+    confirmed = confirm("Are these the values? "+correct+" and "+wrong)
+    
+    out = document.getElementById("result")
+    if(confirmed){
+        out.innerHTML = "Access allowed"
+    } else {
+        out.innerHTML = "Access denied"
+    }
+}
+</script>
