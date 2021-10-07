@@ -5,89 +5,72 @@
 
 <h2>Pass phrase by Venkatesh Guttikonda” </h2>
 
-<form class="form-group">
-    <label for="form1_phrase">Enter the secret phrase </label>
-    <input type ="Password" id="form1_secret_word" name="form1_secret_word" min=10 max=50 step=2 value= "Let me in"> 
-    <br>
+<form>
+    <label for="form1_age">Enter the secret phrase </label>
+    <input type ="password" id="secret_phrase" name="form1_age" value="Let me in"> <br>
 
-    <label for="form1_check">Enter a phrase </label>
-    <input type ="text" id="form1_guess_word" name="form1_guess_word" autofocus> <br>
+    <label for="form1_nick">Enter a phrase </label>
+    <input type ="text" id="phrase" name="form1_nick" autofocus> <br>
 
-    <input type="button" class="btn btn-success" onclick="processPhrase()" value="Check the phrase" id="locked">
-
-    <p id="result">Your guess count will shoen here</p>
+    <input type="button" onclick="processPhrase()" value="Check the phrase">
 </form>
 
-    <div class="container">
-        <img src="kangroo.jpg" id="animals" class="img-fluid" alt="Kangroo" width="200" height="200"
-            onclick="newImage(this)" />
-    </div>
+<p id="result">This text will be replaced </p>
+<div class="container">
+<img src="tiger.jpg" id="rotate" oneclick="rotateImage()" width="200" height="200">
+
+</div>
+
+
 
 <script> 
 
+var correct = 0;
+var wrong = 0;
+var currentimage = 0;
 
-        var correct = 0;
-        var wrong = 0;
-        var count = 0;
+function processPhrase (){
+console.log("Getting form values")
+sphrase = document.getElementById("secret_phrase").value
+phrase = document.getElementById("phrase").value
 
-        function processPhrase() {
+out = document.getElementById("result")
+if(sphrase == phrase){
+    correct = correct +1
+    alert("Access is allowed")
+    out.innerHTML = "Correct:" +correct
+} else {
+    wrong = wrong +1
+    alert("Access is denied")
+    out.innerHTML = "Wrong:" +wrong
+}
+}
 
-            console.log("Checking the Guess......")
-            secret_Word = document.getElementById("form1_secret_word").value
-            guess_word = document.getElementById("form1_guess_word").value
-            result = document.getElementById("result")
+function rotateImage()
+{
+switch (currentimage){
+ case 0:
+     document.getElementById("rotate").src = "tiger.jpg";
+     currentimage=1;
+     break;
+     case 1:
+         document.getElementById("rotate").src = "giraffe.jpg";
+         currentimage=2;
+         break;
+         case 2:
+         document.getElementById("rotate").src = "kangroo.jpg";
+         currentimage=0;
+         break;
+         default:
+             document.getElementById("rotate").src ="tiger.jpg"
 
-            if (secret_Word.localeCompare(guess_word) == 0) {
-                alert("Access allowed")
-                correct++;
-                result.innerHTML = "Correct guess Count: " + correct + "<br>" + "Wrong guess Count: " + wrong
-            }
-            else {
-                if (count >= 0 && count < 3) {
-                    wrong++;
-                    count++;
-                    alert("Access denied")
-                    result.innerHTML = "Correct guess Count: "
-                        + correct + "<br>" + "Wrong guess Count: " + wrong
+}
 
-                }
-                else {
-                    accountLock();
-                }
-            }
+}
 
-        }
-
-        function accountLock() {
-
-            document.getElementById("locked").value = "Account is locked"
-            document.getElementById("locked").className = "btn btn-danger"
-            document.getElementById("locked").disabled = true
-            alert("account locked")
-        }
-
-
-        var usingImage = 1;
-        image = document.getElementById("image");
-
-        function newImage() {
-            switch (usingImage) {
-                case 1:
-                    image.setAttribute('src', 'tiger.jpg');
-                    usingImage++;
-                    break;
-                case 2:
-                    image.setAttribute('src', 'giraffe.jpg');
-                    usingImage++;
-                    break;
-                case 3:
-                    image.setAttribute('src', 'kangroo.jpg');
-                    usingImage = 1;
-                    break;
-            }
-        }
 
 </script>
+
 
 </body>
 </html> 
