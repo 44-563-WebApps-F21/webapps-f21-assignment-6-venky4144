@@ -5,20 +5,19 @@
 
 <h2>Pass phrase by Venkatesh Guttikonda” </h2>
 
-<form>
+<form class="form-group">
     <label for="form1_phrase">Enter the secret phrase </label>
-    <input type ="Password" id="form1_phrase" name="form1_phrase" min=10 max=50 step=2 value= "Let me in"> <br>
+    <input type ="Password" id="form1_secret_word" name="form1_secret_word" min=10 max=50 step=2 value= "Let me in"> 
+    <br>
 
     <label for="form1_check">Enter a phrase </label>
-    <input type ="text" id="form1_check" name="form1_check" autofocus> <br>
+    <input type ="text" id="form1_guess_word" name="form1_guess_word" autofocus> <br>
 
-    <input type="button" onclick="processPhrase()" value="Check the phrase">
+    <input type="button" class="btn btn-success" onclick="processPhrase()" value="Check the phrase" id="locked">
+
+    <p id="result">Your guess count will shoen here</p>
 </form>
 
-
-<p id="result">Result: </p>
-
-<p id="result">Attempts display here </p>
     <div class="container">
         <img src="kangroo.jpg" id="animals" class="img-fluid" alt="Kangroo" width="200" height="200"
             onclick="newImage(this)" />
