@@ -5,72 +5,84 @@
 
 <h2>Pass phrase by Venkatesh Guttikonda” </h2>
 
-<form>
-    <label for="form1_age">Enter the secret phrase </label>
-    <input type ="password" id="secret_phrase" name="form1_age" value="Let me in"> <br>
 
-    <label for="form1_nick">Enter a phrase </label>
-    <input type ="text" id="phrase" name="form1_nick" autofocus> <br>
+<form id="phraseValidationForm">
+    
+    <div>
+        <label for="secret_phrase">Enter the secret phrase</label>
+        <input type ="password" id="secretPhrase" value="Let me in">
+    </div>
+    
+    <div>
+        <label for="phrase">Enter a phrase</label>
+        <input type ="text" id="checkPhrase"/>
+    </div>
+    
+    <div>
+        <input type="button" id="btnProcessPhrase" onclick="processPhrase()" value="Check the phrase"/>
+    </div>
 
-    <input type="button" onclick="processPhrase()" value="Check the phrase">
 </form>
 
-<p id="result">This text will be replaced </p>
-<div class="container">
-<img src="tiger.jpg" id="rotate" oneclick="rotateImage()" width="200" height="200">
+<p id="result"></p>
+
+<div>
+    <label for="image">Image: </label>
+    <img src="tiger.jpg" id="image" style="height: 200px;width: 200px;" onclick="newImage()"></img><br><br>
 
 </div>
 
-
-
 <script> 
-
-var correct = 0;
-var wrong = 0;
-var currentimage = 0;
-
-function processPhrase (){
-console.log("Getting form values")
-sphrase = document.getElementById("secret_phrase").value
-phrase = document.getElementById("phrase").value
-
-out = document.getElementById("result")
-if(sphrase == phrase){
-    correct = correct +1
-    alert("Access is allowed")
-    out.innerHTML = "Correct:" +correct
-} else {
-    wrong = wrong +1
-    alert("Access is denied")
-    out.innerHTML = "Wrong:" +wrong
-}
-}
-
-function rotateImage()
-{
-switch (currentimage){
- case 0:
-     document.getElementById("rotate").src = "tiger.jpg";
-     currentimage=1;
-     break;
-     case 1:
-         document.getElementById("rotate").src = "giraffe.jpg";
-         currentimage=2;
-         break;
-         case 2:
-         document.getElementById("rotate").src = "kangroo.jpg";
-         currentimage=0;
-         break;
-         default:
-             document.getElementById("rotate").src ="tiger.jpg"
-
-}
-
-}
+    correct = 0;
+    wrong = 0;
+    usingImage = 1;
+   
+   function processPhrase (){
+       console.log("Getting form values")
+       var secretPhrase = document.getElementById("secretPhrase").value;
+       var checkPhrase = document.getElementById("checkPhrase").value;
+       if(secretPhrase != null && secretPhrase.trim() != "" && checkPhrase != null && checkPhrase.trim() != "" && secretPhrase == checkPhrase){
+         correct =correct + 1;
+         alert("Access Allowed");
+       }else{
+           wrong = wrong + 1;
+           alert("Access Denied"); 
+           
+        
+            
+       }
+        var out = document.getElementById("result");
+       
+        out.innerHTML = "Correct: " + correct + "<br>" + "Wrong: " + wrong;
+       
+   }
 
 
-</script>
+   function newImage(){
 
+        switch(usingImage){
+
+            case 1: 
+                usingImage++;
+                document.getElementById("image").src = "kangroo.jpg";
+                break;
+            
+            case 2:
+                usingImage++;
+                document.getElementById("image").src = "giraffe.jpg";
+                break;
+            
+            case 3:
+                usingImage =1;
+                document.getElementById("image").src = "tiger.jpg";
+                break;
+        }
+
+
+   }
+
+   </script>
+   
 
 </body>
 </html> 
