@@ -18,27 +18,76 @@
 
 <p id="result">Result: </p>
 
+<p id="result">Attempts display here </p>
+    <div class="container">
+        <img src="kangroo.jpg" id="animals" class="img-fluid" alt="Kangroo" width="200" height="200"
+            onclick="newImage(this)" />
+    </div>
+
 <script> 
 
-function processPhrase(){
-    var correct=0;
-    var wrong =0; 
-    
-    phrase = document.getElementById("form1_phrase").value
-    check = document.getElementById("form1_check").value
-    alert("Is the given value"+check)
-    out = document.getElementById("result")
+<
+        var correct = 0;
+        var wrong = 0;
+        var count = 0;
 
-    if(phrase==check){
-        correct = correct+1;
-       out.innerHTML = "correct:" +correct ;
-       alert('Access allowed')
-    } else {
-        wrong = wrong +1;
-        out.innerHTML = "wrong:" +wrong ;
-        alert('Access denied')
-    }
-}
+        function processPhrase() {
+
+            console.log("Checking the Guess......")
+            secret_Word = document.getElementById("form1_secret_word").value
+            guess_word = document.getElementById("form1_guess_word").value
+            result = document.getElementById("result")
+
+            if (secret_Word.localeCompare(guess_word) == 0) {
+                alert("Access allowed")
+                correct++;
+                result.innerHTML = "Correct guess Count: " + correct + "<br>" + "Wrong guess Count: " + wrong
+            }
+            else {
+                if (count >= 0 && count < 3) {
+                    wrong++;
+                    count++;
+                    alert("Access denied")
+                    result.innerHTML = "Correct guess Count: "
+                        + correct + "<br>" + "Wrong guess Count: " + wrong
+
+                }
+                else {
+                    accountLock();
+                }
+            }
+
+        }
+
+        function accountLock() {
+
+            document.getElementById("locked").value = "Account is locked"
+            document.getElementById("locked").className = "btn btn-danger"
+            document.getElementById("locked").disabled = true
+            alert("account locked")
+        }
+
+
+        var usingImage = 1;
+        image = document.getElementById("image");
+
+        function newImage() {
+            switch (usingImage) {
+                case 1:
+                    image.setAttribute('src', 'tiger.jpg');
+                    usingImage++;
+                    break;
+                case 2:
+                    image.setAttribute('src', 'giraffe.jpg');
+                    usingImage++;
+                    break;
+                case 3:
+                    image.setAttribute('src', 'kangroo.jpg');
+                    usingImage = 1;
+                    break;
+            }
+        }
+
 </script>
 
 </body>
